@@ -36,9 +36,9 @@
         
         // Масштабирование кнопками
         // Уменьшение (Alt + Numpad +, или следующее)
-        keyZoomPlus: 'add',      // Серый плюс на Numpad по умолчанию
+        keyZoomPlus: 'add',       // Плюс на Numpad по умолчанию
         // Уменьшение (Alt + Numpad -, или следующее)
-        keyZoomMinus: 'subtract', // Серый минус на Numpad по умолчанию
+        keyZoomMinus: 'subtract', // Минус на Numpad по умолчанию
         // Сброс позиции и зума (Alt + Numpad 0, Alt + 0, Alt + NumpadInsert)
         keyZoomZero: 'decimal',   // Точка / Ноль на Numpad (для сброса) по умолчанию
         
@@ -203,7 +203,7 @@
             state.zoom = Math.max(CONFIG.minZoom, state.zoom - CONFIG.zoomStep);
             handled = true;
         }
-        // 6. Сброс позиции и зума (Alt + Numpad 0)
+        // 6. Сброс позиции и зума (Alt + Numpad 0, Alt + 0, Alt + NumpadInsert, keyZoomZero из конфига)
         else if (e.altKey && (e.code === 'Numpad0' || e.code === 'NumpadInsert' || e.key === CONFIG.keyZoomZero || e.key === '0')) {
             state.zoom = 1.0;
             state.tx = 0;
@@ -218,7 +218,7 @@
         }
     }, true);
 
-    // Обработчик масштабирования колесиком мыши (Alt + Колесо) на фазе погружения (capture)
+    // Обработчик масштабирования колесиком мыши (Alt + Колесо)
     window.addEventListener('wheel', function(e) {
         if (!e.altKey) return;
 
